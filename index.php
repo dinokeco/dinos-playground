@@ -6,5 +6,5 @@ require('vendor/autoload.php');
 
   $c = $a + $b;
 
-  echo "Sum is ". $c;
+  echo "Sum is = ". $c;
 ?>
