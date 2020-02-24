@@ -1,10 +1,9 @@
 <?php
 require('vendor/autoload.php');
 
-  $a = 1;
-  $b = 2;
+Flight::route('/', function(){
+    echo 'hello world!';
+});
 
-  $c = $a + $b;
-
-  echo "Sum is = ". $c;
+Flight::start();
 ?>
