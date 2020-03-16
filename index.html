@@ -4,6 +4,8 @@
 
   <link rel="stylesheet" href="assets/css/spapp.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
+  <link rel="stylesheet" href="assets/css/select2.min.css" />
+  <link rel="stylesheet" href="assets/css/highcharts.css" />
 
 </head>
 <body>
@@ -11,27 +13,35 @@
     <nav role="navigation">
       <ul>
         <li><a href="#view_1">go to view 1</a></li>
-        <li><a href="#view_2">go to view 2</a></li>
-        <li><a href="#view_3">go to view 3</a></li>
+        <li><a href="#countries">Countries</a></li>
+        <li><a href="#charts">Charts</a></li>
       </ul>
     </nav>
 
     <h1 style="margin-top: 70px;">Welcome to first DL coding on IBU</h1>
 
     <main id="spapp" role="main">
-      <section id="view_2"></section>
-      <section id="view_3"><h1>view 3</h1></section>
+      <section id="countries"></section>
+      <section id="charts"></section>
       <section id="error_404"><h1>Page not found</h1></section>
       <section id="view_1" data-load="view_1.html" ></section>
     </main>
 
 </body>
-<script>
-  console.log("dummy log");
-</script>
 
   <script src="assets/js/jquery-3.1.0.min.js"></script>
   <script src="assets/js/jquery.spapp.js"></script>
+  <script src="assets/js/select2.min.js"></script>
   <script src="assets/js/custom.js"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+  <script>
+    console.log("dummy log");
+  </script>
 
 </html>

@@ -11,14 +11,9 @@ $(document).ready(function() {
     onReady: function() { $("#view_1").append($.now()+': Written when ready<br/>'); }
   });
 
+  app.route({view: 'countries', load: 'countries.html' });
 
-  app.route({view: 'view_2', load: 'view_2.html' });
-
-
-  app.route({
-    view: 'view_3',
-    onCreate: function() { $("#view_3").append("I'm the third view"); }
-  });
+  app.route({view: 'charts', load: 'charts.html' });
 
   // run app
   app.run();
