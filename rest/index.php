@@ -14,7 +14,7 @@ Flight::route('/', function(){
 // jQuery - Procedural coding
 // ajax call with backend
 
-//BACKEND
+// BACKEND
 // Presentation - Rest API
 // BussinessLogic Layer - Controller/ Managers / Agents etc...
 // DAO - Data Access Object - PHP Code for managing data - talking to MYSQL

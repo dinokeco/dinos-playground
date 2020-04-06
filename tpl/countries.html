@@ -79,12 +79,9 @@
   $('#add_country_form').validate({
     submitHandler: function(form) {
         console.log(form);
-        // ajax call - next lesson.
         $.post( "rest/countries", $( "#add_country_form" ).serialize() ).done(function(data) {
             $('#country_modal').modal('toggle');
-            console.log(data);
             append_country(data);
-            
             toastr.success('Data has been saved');
         }).fail(function() {
             alert( "error" );
