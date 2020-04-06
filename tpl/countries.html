@@ -53,33 +53,46 @@
     $('#country_modal').modal('toggle');
   }
 
-  $.get('rest/countries').done(function(response){
-    var countries_html = '';
-    for(var i=0; i < response.length; i++){
-      countries_html += '<option value="'+response[i].name+'">'+response[i].name+'</option>';
-    }
-    $('#country').html(countries_html);
-    $('#country').select2({});
+  function get_countries(){
+    $.get('rest/countries').done(function(response){
+      var countries_html = '';
+      for(var i=0; i < response.length; i++){
+        countries_html += '<option value="'+response[i].id+'">'+response[i].name+'</option>';
+      }
+      $('#country').html(countries_html);
+      $('#country').select2({});
 
-    $('#country_list').html(countries_html);
-    $('#country_list').select2({tags: true});
-  }).fail(function(error){
-    toastr.error(error.responseText);
-  });
+      $('#country_list').html(countries_html);
+      $('#country_list').select2({tags: true});
+    }).fail(function(error){
+      toastr.error(error.responseText);
+    });
+  }
+
+  function append_country(country){
+    var html = $('#country').html();
+    html += '<option value="'+country.id+'">'+country.name+'</option>';
+    $('#country').html(html);
+    $('#country').select2({});
+  }
 
   $('#add_country_form').validate({
     submitHandler: function(form) {
         console.log(form);
         // ajax call - next lesson.
-        $.post( "rest/abc", $( "#add_country_form" ).serialize() ).done(function() {
-            alert( "success" );
+        $.post( "rest/countries", $( "#add_country_form" ).serialize() ).done(function(data) {
+            $('#country_modal').modal('toggle');
+            console.log(data);
+            append_country(data);
+            
+            toastr.success('Data has been saved');
         }).fail(function() {
             alert( "error" );
+            $('#country_modal').modal('toggle');
         });
-        // close the modal
-        $('#country_modal').modal('toggle');
-        // show message to user that data has been saved.
-        toastr.success('Data has been saved');
     }
   });
+
+  get_countries();
+
 </script>
