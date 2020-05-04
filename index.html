@@ -44,20 +44,32 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
   <script>
-    var user = window.localStorage.getItem("user");
-    if (user){
-      user = JSON.parse(user);
-      if (user.email){
-        toastr.success("Welcome dino");
-        $('.only-guests').hide();
-        $('.only-users').show();
-      }
+    if (get_logged_user_id()){
+      toastr.success("Welcome dino");
+      $('.only-guests').hide();
+      $('.only-users').show();
     }
+
 
     function logout(){
       window.localStorage.clear();
       window.location = "index.html";
     }
+
+    function get_logged_user_id(){
+      var user = window.localStorage.getItem("user");
+      if (user){
+        user = JSON.parse(user);
+        if (user.id){
+          return user.id;
+        }else{
+          return null;
+        }
+      }else{
+        return null;
+      }
+    }
+
   </script>
 
 </html>

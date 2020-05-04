@@ -23,6 +23,8 @@ Flight::route('/', function(){
 // DATABASE - MYSQL
 
 Flight::route('GET /countries', function(){
+  $headers = getallheaders();
+  $user_id = $headers['X-Covid-User'];
   Flight::json(Flight::country_dao()->get_all());
 });
 

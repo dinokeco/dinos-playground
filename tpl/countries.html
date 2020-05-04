@@ -54,7 +54,17 @@
   }
 
   function get_countries(){
-    $.get('rest/countries').done(function(response){
+
+      $.ajax({
+         url: "rest/countries",
+         type: "GET",
+         beforeSend: function(xhr){
+           xhr.setRequestHeader('X-Covid-User', get_logged_user_id());
+         },
+         success: function() { alert('Success!'); }
+      });
+
+  /*  $.get('rest/countries').done(function(response){
       var countries_html = '';
       for(var i=0; i < response.length; i++){
         countries_html += '<option value="'+response[i].id+'">'+response[i].name+'</option>';
@@ -66,7 +76,7 @@
       $('#country_list').select2({tags: true});
     }).fail(function(error){
       toastr.error(error.responseText);
-    });
+    });*/
   }
 
   function append_country(country){
