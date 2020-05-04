@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>My first SPapp</title>
+  <title>Covid Countries</title>
 
   <link rel="stylesheet" href="assets/css/spapp.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
@@ -10,21 +10,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
 </head>
 <body>
-
     <nav role="navigation">
       <ul>
         <li><a href="#view_1">go to view 1</a></li>
         <li><a href="#countries">Countries</a></li>
         <li><a href="#charts">Charts</a></li>
+        <li class="only-users"><a href="#admin">Admin</a></li>
+        <li class="only-users"><a href="#" onclick="logout();">Logout</a></li>
+        <li class="only-guests"><a href="login.html">Login</a></li>
       </ul>
     </nav>
     <main id="spapp" role="main">
       <section id="countries"></section>
       <section id="charts"></section>
+      <section id="admin"></section>
       <section id="error_404"><h1>Page not found</h1></section>
       <section id="view_1" data-load="view_1.html" ></section>
     </main>
-
 </body>
 
   <script src="assets/js/jquery-3.1.0.min.js"></script>
@@ -42,7 +44,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
   <script>
-    console.log("dummy log");
+    var user = window.localStorage.getItem("user");
+    if (user){
+      user = JSON.parse(user);
+      if (user.email){
+        toastr.success("Welcome dino");
+        $('.only-guests').hide();
+        $('.only-users').show();
+      }
+    }
+
+    function logout(){
+      window.localStorage.clear();
+      window.location = "index.html";
+    }
   </script>
 
 </html>

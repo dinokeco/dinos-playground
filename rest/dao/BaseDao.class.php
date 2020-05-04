@@ -11,14 +11,14 @@ class BaseDao {
     $this->table_name = $table_name;
   }
 
-  private function execute_query($sql_query, $params){
+  protected function execute_query($sql_query, $params){
     $stmt = $this->pdo->prepare($sql_query);
     $stmt->execute($params);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     return $stmt->fetchAll();
   }
 
-  private function execute_insert($entity){
+  protected function execute_insert($entity){
     // entity is assiciative array storage of object - key/value storage
     $columns = "";
     $params = "";
@@ -29,7 +29,7 @@ class BaseDao {
     $columns = rtrim($columns, ",");
     $params = rtrim($params, ",");
 
-    $stmt = $this->pdo->prepare("INSERT INTO countries ({$columns}) VALUES ({$params})");
+    $stmt = $this->pdo->prepare("INSERT INTO {$this->table_name} ({$columns}) VALUES ({$params})");
     $stmt->execute($entity);
     $entity['id'] = $this->pdo->lastInsertId(); // get back id from DB
     return $entity;

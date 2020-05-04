@@ -10,10 +10,12 @@ $(document).ready(function() {
     onCreate: function() { $("#view_1").append($.now()+': Written on create<br/>'); },
     onReady: function() { $("#view_1").append($.now()+': Written when ready<br/>'); }
   });
-
   app.route({view: 'countries', load: 'countries.html' });
-
   app.route({view: 'charts', load: 'charts.html' });
+
+
+  app.route({view: 'admin', load: 'admin.html' });
+
 
   // run app
   app.run();
