@@ -50,7 +50,6 @@
       $('.only-users').show();
     }
 
-
     function logout(){
       window.localStorage.clear();
       window.location = "index.html";
@@ -60,8 +59,8 @@
       var user = window.localStorage.getItem("user");
       if (user){
         user = JSON.parse(user);
-        if (user.id){
-          return user.id;
+        if (user.token){
+          return user.token;
         }else{
           return null;
         }

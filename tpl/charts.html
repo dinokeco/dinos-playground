@@ -1,9 +1,15 @@
 Charts
 
+<button type="button" class="btn btn-warning only-users-control">Warning</button>
+
 <div id="chart-container"></div>
 
 <script>
 
+
+if (get_logged_user_id()){
+  $('.only-users-control').removeClass('only-users-control');
+}
 
 Highcharts.chart('chart-container', {
     title: {

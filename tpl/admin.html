@@ -1,1 +1,53 @@
 THIS IS JUST FOR ADMINS
+<table id="covid_countries" class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Continent</th>
+      <th scope="col">Name</th>
+      <th scope="col">Total</th>
+      <th scope="col">Deaths</th>
+      <th scope="col">Recovered</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+
+
+<script>
+$.ajax({
+   url: "rest/countries",
+   type: "GET",
+   beforeSend: function(xhr){
+     xhr.setRequestHeader('X-Covid-User', get_logged_user_id());
+   },
+   success: function(data) {
+     var table_html = "";
+     for(var i = 0 ; i < data.length; i++){
+       table_html += "<tr><th scope='row'>"+data[i].id+"</th> <td>"+data[i].continent+"</td> <td>"+data[i].name+"</td> <td>"+data[i].total+"</td> <td>"+data[i].deaths+"</td> <td>"+data[i].recovered+"</td> </tr>";
+     }
+     $('#covid_countries tbody').html(table_html);
+   },
+   error: function(error){
+     if (error.status == 403){
+       window.location="login.html";
+     }else{
+       toastr.error(error.responseText)
+     }
+   }
+});
+/*
+$.get('rest/countries').done(function(data){
+  var table_html = "";
+  for(var i = 0 ; i < data.length; i++){
+    table_html += "<tr><th scope='row'>"+data[i].id+"</th> <td>"+data[i].continent+"</td> <td>"+data[i].name+"</td> <td>"+data[i].total+"</td> <td>"+data[i].deaths+"</td> <td>"+data[i].recovered+"</td> </tr>";
+  }
+  $('#covid_countries tbody').html(table_html);
+  console.log(data);
+}).fail(function(error){
+  console.log(error);
+});*/
+
+</script>

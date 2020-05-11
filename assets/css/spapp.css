@@ -7,3 +7,7 @@ main#spapp > section:target ~ * { display: none; }
 .only-users{
   display: none;
 }
+
+.only-users-control{
+  display: none !important;
+}
