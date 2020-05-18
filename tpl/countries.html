@@ -56,7 +56,7 @@
   function get_countries(){
 
       $.ajax({
-         url: "rest/countries",
+         url: "rest/admin/countries",
          type: "GET",
          beforeSend: function(xhr){
            xhr.setRequestHeader('X-Covid-User', get_logged_user_id());

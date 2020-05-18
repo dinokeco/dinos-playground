@@ -8,6 +8,8 @@ THIS IS JUST FOR ADMINS
       <th scope="col">Total</th>
       <th scope="col">Deaths</th>
       <th scope="col">Recovered</th>
+      <th scope="col">Population</th>
+      <th scope="col">Inf.Rate</th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +20,7 @@ THIS IS JUST FOR ADMINS
 
 <script>
 $.ajax({
-   url: "rest/countries",
+   url: "rest/admin/countries",
    type: "GET",
    beforeSend: function(xhr){
      xhr.setRequestHeader('X-Covid-User', get_logged_user_id());
@@ -26,9 +28,10 @@ $.ajax({
    success: function(data) {
      var table_html = "";
      for(var i = 0 ; i < data.length; i++){
-       table_html += "<tr><th scope='row'>"+data[i].id+"</th> <td>"+data[i].continent+"</td> <td>"+data[i].name+"</td> <td>"+data[i].total+"</td> <td>"+data[i].deaths+"</td> <td>"+data[i].recovered+"</td> </tr>";
+       table_html += "<tr><th scope='row'>"+data[i].id+"</th> <td>"+data[i].continent+"</td> <td>"+data[i].name+"</td> <td>"+data[i].total+"</td> <td>"+data[i].deaths+"</td> <td>"+data[i].recovered+"</td> <td>"+data[i].population+"</td> <td>"+data[i].inf_rate+"</td> </tr>";
      }
      $('#covid_countries tbody').html(table_html);
+     $('#covid_countries').DataTable();
    },
    error: function(error){
      if (error.status == 403){

@@ -41,7 +41,7 @@ class BaseDao {
     return $this->execute_query("SELECT * FROM {$this->table_name} WHERE id = :id", ["id" => $id]);
   }
   public function get_all(){
-    return $this->execute_query("SELECT * FROM {$this->table_name}", []);
+    return $this->execute_query("SELECT * FROM {$this->table_name} LIMIT 5 ", []);
   }
 }
 
